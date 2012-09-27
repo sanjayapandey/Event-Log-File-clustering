@@ -1,80 +1,111 @@
-<!--
-  To change this template, choose Tools | Templates
-  and open the template in the editor.
--->
-
-<%@ page contentType="text/html;charset=UTF-8" %>
+<!doctype html>
 <html>
-  <head>
-    <meta name="layout" content="homeLayout"/>
-    <title>Log file clustering</title>
+	<head>
+		<meta name="layout" content="main"/>
+		<title>Welcome to Grails</title>
+		<style type="text/css" media="screen">
+			#status {
+				background-color: #eee;
+				border: .2em solid #fff;
+				margin: 2em 2em 1em;
+				padding: 1em;
+				width: 12em;
+				float: left;
+				-moz-box-shadow: 0px 0px 1.25em #ccc;
+				-webkit-box-shadow: 0px 0px 1.25em #ccc;
+				box-shadow: 0px 0px 1.25em #ccc;
+				-moz-border-radius: 0.6em;
+				-webkit-border-radius: 0.6em;
+				border-radius: 0.6em;
+			}
 
-  <g:javascript src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"/>
-  <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.1.7.1.min.js')}"></script>
-  <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.easing.1.3.js')}"></script>
-  <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.coda-slider-2.0.js')}"></script>
-  <script type="text/javascript">
-$(function () {
-    var chart;
-    $(document).ready(function() {
-        chart = new Highcharts.Chart({
-            chart: {
-                renderTo: 'container',
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: 'Log file clustering and visulization'
-            },
-            tooltip: {
-                formatter: function() {
-                    return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
-                }
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        color: '#000000',
-                        connectorColor: '#000000',
-                        formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
-                        }
-                    }
-                }
-            },
-            series:${slusterInfo}
-//            series: [{
-//                type: 'pie',
-//                name: 'log file counter',
-//                data: [
-//                    ['Cluster-1',   45.0],
-//                    ['Cluster-2',       26.8],
-//                    {
-//                        name: 'Cluster-3',
-//                        y: 12.8,
-//                        sliced: true,
-//                        selected: true
-//                    },
-//                    ['Cluster-4',    8.5],
-//                    ['Cluster-5',     6.2],
-//                    ['Cluster-6',   0.7],
-//                    ['Cluster-7',   0.8]
-//                ]
-//            }]
-        });
-    });
-    
-});
-		</script>
-</head>
-<body>
-<script src="${resource(dir: 'js', file: 'highcharts.js')}"></script>
-<script src="${resource(dir: 'js/modules', file: 'exporting.js')}"></script>
-<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+			.ie6 #status {
+				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
+			}
 
-</body>
+			#status ul {
+				font-size: 0.9em;
+				list-style-type: none;
+				margin-bottom: 0.6em;
+				padding: 0;
+			}
+            
+			#status li {
+				line-height: 1.3;
+			}
+
+			#status h1 {
+				text-transform: uppercase;
+				font-size: 1.1em;
+				margin: 0 0 0.3em;
+			}
+
+			#page-body {
+				margin: 2em 1em 1.25em 18em;
+			}
+
+			h2 {
+				margin-top: 1em;
+				margin-bottom: 0.3em;
+				font-size: 1em;
+			}
+
+			p {
+				line-height: 1.5;
+				margin: 0.25em 0;
+			}
+
+			#controller-list ul {
+				list-style-position: inside;
+			}
+
+			#controller-list li {
+				line-height: 1.3;
+				list-style-position: inside;
+				margin: 0.25em 0;
+			}
+
+			@media screen and (max-width: 480px) {
+				#status {
+					display: none;
+				}
+
+				#page-body {
+					margin: 0 1em 1em;
+				}
+
+				#page-body h1 {
+					margin-top: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		<div id="status" role="complementary">
+			<h1>Initilization</h1>
+                       
+			<ul>
+                           <h2>Remaining tasks</h2>
+                                <li>Visualization</li>
+				
+			</ul>
+			
+		</div>
+		<div id="page-body" role="main">
+			<h1>Welcome!</h1>
+			<p>${message}</p>
+
+			<div id="controller-list" role="navigation">
+				<h2>View Clusters and Contents</h2>
+				<ul>
+                                  <fieldset>
+                                    <g:form controller="Main" action="index" method="post">
+                                      <input type="submit" value="VISUALIZE CLUSTERS"/>
+                                    </g:form>
+                                  </fieldset>
+				</ul>
+			</div>
+		</div>
+	</body>
 </html>

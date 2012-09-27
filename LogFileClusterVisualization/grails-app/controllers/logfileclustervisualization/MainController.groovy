@@ -1,7 +1,8 @@
 package logfileclustervisualization
 
 class MainController {
-def ClusterService
+    def ClusterService
+    
     def index() {
        
         def clusterInfo = ClusterService.clusterInformation();
@@ -21,5 +22,10 @@ def ClusterService
         def counts = ClusterService.clusterLogCount().split(":")
         
         render(view:"displaymessage", model:[message:info[0],list:info[1],logs:counts[0],clusters:counts[1]])
+    }
+    def infoClusterCreation(){
+        def message = "Clusters are created successfully"
+        render(view: "index", model: [message: message])
+        
     }
 }
